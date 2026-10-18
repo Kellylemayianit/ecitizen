@@ -1,10 +1,11 @@
 import { useRouter } from 'expo-router';
 import { Pressable, Text } from 'react-native';
-import { colors } from '../../src/core/theme';
+import { useColors } from '../../src/core/theme';
 import { statusLabel, useJobs } from '../../src/features/jobs/store';
 import { Card, Chip, Muted, Screen } from '../../src/ui';
 
 export default function Vault() {
+  const colors = useColors();
   const router = useRouter();
   const jobs = useJobs((s) => s.jobs);
   return (
