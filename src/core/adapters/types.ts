@@ -5,7 +5,7 @@ export type Vertical = 'tax' | 'transport' | 'land' | 'security' | 'health';
 export interface ServiceDef {
   id: string; title: string; subtitle: string;
   vertical: Vertical; kind: ServiceKind; mode: AdapterMode;
-  portalUrl?: string; endpoint?: string; input?: { key: string; label: string; placeholder: string };
+  portalUrl?: string; input?: { key: string; label: string; placeholder: string };
 }
 export interface ServiceRequest { serviceId: string; input: Record<string, string>; }
 

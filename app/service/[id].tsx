@@ -2,14 +2,13 @@ import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Alert, Linking, Text } from 'react-native';
 import { getAdapter, type ServiceResult } from '../../src/core/adapters';
-import { useColors } from '../../src/core/theme';
+import { colors } from '../../src/core/theme';
 import { useAuth } from '../../src/features/auth/store';
 import { useJobs } from '../../src/features/jobs/store';
 import { findService } from '../../src/features/services/catalog';
 import { Button, Card, Field, H1, Muted, Row, Screen } from '../../src/ui';
 
 export default function ServiceScreen() {
-  const colors = useColors();
   const { id } = useLocalSearchParams<{ id: string }>();
   const def = findService(id);
   const router = useRouter();

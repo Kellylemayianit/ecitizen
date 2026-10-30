@@ -1,13 +1,12 @@
 import { Stack, useLocalSearchParams } from 'expo-router';
 import { Text } from 'react-native';
-import { useColors } from '../../src/core/theme';
+import { colors } from '../../src/core/theme';
 import { statusLabel, useJobs, type JobStatus } from '../../src/features/jobs/store';
 import { Button, Card, Chip, H1, Muted, Row, Screen } from '../../src/ui';
 
 const steps: JobStatus[] = ['awaiting_payment', 'processing', 'completed'];
 
 export default function JobScreen() {
-  const colors = useColors();
   const { id } = useLocalSearchParams<{ id: string }>();
   const job = useJobs((s) => s.jobs.find((j) => j.id === id));
   const patch = useJobs((s) => s.patch);
@@ -21,7 +20,7 @@ export default function JobScreen() {
       <Card>
         <Row a="Reference" b={job.reference} />
         {steps.map((s, i) => (
-          <Text key={s} style={{ color: i <= at ? colors.link : colors.muted, fontWeight: i === at ? '700' : '400' }}>
+          <Text key={s} style={{ color: i <= at ? colors.green : colors.muted, fontWeight: i === at ? '700' : '400' }}>
             {i <= at ? '✓ ' : '• '}{statusLabel[s]}
           </Text>
         ))}
