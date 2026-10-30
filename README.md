@@ -1,4 +1,5 @@
-Cumulative update 3: supersedes updates 1 and 2. Light/dark mode + desktop sidebar layout + live KRA lookups.
-Copy app/ and src/ over your project (overwrite), then restart: npx expo start -c
-Desktop sidebar needs a browser window 1024px wide or more, and only shows after you sign in and unlock with your PIN.
-Set EXPO_PUBLIC_API_URL (for example http://localhost:8080) to call the Rust backend; without it the Tax tiles show demo data.
+Update 5 (apply after update 4): loaders and a theme switch that is always reachable on web.
+- Splash loader instead of a blank screen: a CSS spinner while the web bundle loads (app/+html.tsx) and a branded loader while the app restores your session
+- Inline loader while a lookup runs
+- Dark/Light switch: bottom of the desktop sidebar, in the web footer on narrow screens, and still under Profile, Appearance (System, Light, Dark)
+Copy app/ and src/ over your project, then run: npx expo start -c

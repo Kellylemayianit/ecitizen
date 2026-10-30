@@ -2,13 +2,14 @@ import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Alert, Linking, Text } from 'react-native';
 import { getAdapter, type ServiceResult } from '../../src/core/adapters';
-import { colors } from '../../src/core/theme';
+import { useColors } from '../../src/core/theme';
 import { useAuth } from '../../src/features/auth/store';
 import { useJobs } from '../../src/features/jobs/store';
 import { findService } from '../../src/features/services/catalog';
-import { Button, Card, Field, H1, Muted, Row, Screen } from '../../src/ui';
+import { Button, Card, Field, H1, Loader, Muted, Row, Screen } from '../../src/ui';
 
 export default function ServiceScreen() {
+  const colors = useColors();
   const { id } = useLocalSearchParams<{ id: string }>();
   const def = findService(id);
   const router = useRouter();
@@ -42,6 +43,7 @@ export default function ServiceScreen() {
       {def.kind === 'query' ? (<>
         {def.input && <Field label={def.input.label} placeholder={def.input.placeholder} value={value} onChangeText={setValue} autoCapitalize="characters" />}
         <Button label="Check" onPress={run} disabled={busy || (!!def.input && value.length < 2)} />
+        {busy && <Loader label="Checking" />}
         {result?.status === 'done' && <Card>{Object.entries(result.data).map(([k, v]) => <Row key={k} a={k} b={String(v)} />)}</Card>}
       </>) : !idVerified ? (<>
         <Muted>This service needs a verified identity. You only do this once.</Muted>
